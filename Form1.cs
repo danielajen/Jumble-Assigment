@@ -12,9 +12,10 @@ namespace Jumble_Assigment
 {
     public partial class Form1 : Form
     {
-        String[] words = { "Canada", "Nathan", "Daniel" };
+        String[] words = { "canada", "nathan", "daniel" };
         Random box = new Random();
         int time = 30;
+        int wordnum = 0;
         public Form1()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace Jumble_Assigment
             // randomize words
             for (int i = 0; i < words.Length; i++)
             {
+                
                 int d = box.Next(i, words.Length);
                 string mix = words[i];
                 words[i] = words[d];
@@ -68,10 +70,15 @@ namespace Jumble_Assigment
         {
             label8.Text = time.ToString();
             time--;
+            if (wordnum ==3)
+            {
+                this.Close();
+            }
+          
             if (time == -1)
             {
                 timer1.Stop();
-                MessageBox.Show("u got " +words + "right!");
+                MessageBox.Show("u got " +wordnum + " right!");
             }
         }
 
@@ -87,26 +94,28 @@ namespace Jumble_Assigment
         {
             bool[] match = new bool[words.Length];
             PictureBox[] checkmarks = { pictureBox1, pictureBox2, pictureBox3 };
-            bool red = false;
 
-            for (int i = 0; i < words.Length; i++)
+
+
+            if (textBox1.Text.ToLower() == words[wordnum])
             {
-                if (textBox1.Text == words[i])
-                {
-                    match[i] = true;
-                    time = time + 10;
-                    checkmarks[i].Visible = true;
-                    red = true;
-                }
-            }
-            if (!red)
-            {
-                label8.BackColor = Color.Red;
-            }
-            else
-            {
+
+                time = time + 10;
+                textBox1.Clear();
+                checkmarks[wordnum].Visible = true;
+                wordnum++;
                 label8.BackColor = this.BackColor;
+
+
+            }       
+          else 
+            {
+        
+                label8.BackColor = Color.Red;
+                textBox1.Clear();
+               
             }
+
         }
     }
 
