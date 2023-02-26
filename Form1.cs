@@ -79,6 +79,7 @@ namespace Jumble_Assigment
             {
                 timer1.Stop();
                 MessageBox.Show("u got " +wordnum + " right!");
+                this.Close();
             }
         }
 
