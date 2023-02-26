@@ -79,9 +79,13 @@ namespace Jumble_Assigment
                 pictureBox1.Visible = false;
                 pictureBox2.Visible = false;
                 pictureBox3.Visible = false;
+                timer1.Stop();
+                MessageBox.Show(" congrats! u passed round 1, ur score will reset for round 2, but clock is still tickin good luck lol!");
             }
+           
             if (completed && wordnum == words.Length)
             {
+                timer1.Start();
                 if (words == round2)
                 {
                     wordnum = wordnum + 3;
@@ -89,7 +93,6 @@ namespace Jumble_Assigment
                     MessageBox.Show("u got " + wordnum + " right! great game");
                     this.Close();
                 }
-         
                 words = round2;
                 completed = false;
                 wordnum = 0;
@@ -127,8 +130,9 @@ namespace Jumble_Assigment
                 }
 
             }
+          
             #endregion
-      if ( completed == true)
+            if ( completed == true)
             {
                 this.Close();
             }
